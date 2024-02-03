@@ -1,4 +1,4 @@
-argon2
+argon2-cffi
 extra-streamlit-components
 streamlit-extras
 streamlit_login_auth_ui

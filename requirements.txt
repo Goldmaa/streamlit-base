@@ -1,3 +1,4 @@
+argon2
 extra-streamlit-components
 streamlit-extras
 streamlit_login_auth_ui

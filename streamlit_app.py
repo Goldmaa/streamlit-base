@@ -36,4 +36,4 @@ if LOGGED_IN == True:
         st.write(data)
 
     # get user email
-    print(st.experimental_user.get("email"))
+    st.write(st.experimental_user.get("email"))

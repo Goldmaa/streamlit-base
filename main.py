@@ -1,38 +1,34 @@
 import streamlit as st
-import streamlit_extras as stx
-import streamlit_authenticator as stauth
-
-import json
-from pathlib import Path
-
-st.set_page_config(page_title="Tamagemon", page_icon="🔥", layout="wide")
+import extra_streamlit_components as stx
+import streamlit_extras as stx2
+from streamlit_login_auth_ui.widgets import __login__
 
 
-left, right = st.columns([3, 2])
+st.set_page_config(
+    page_title="Tamagemon", page_icon="🔥", layout="wide", initial_sidebar_state="collapsed"
+)
 
-def register():
-	proceed = False
-	logins = Path("logins.json")
-	with open(logins, "r") as f:
-		data = json.load(f)
-		if data.get("username") is not None:
-			st.error("Username already exists")
-		else:
-			proceed = True
-		f.close()
-	if proceed:
-		hashed_password = stauth.Hasher(password).generate()
-		st.success("Successfully registered")
+__login__obj = __login__(auth_token=st.secrets["courier_api_key"],
+                         company_name="WellyCompSci",
+                         width=200, height=250,
+                         logout_button_name='Logout', hide_menu_bool=False,
+                         hide_footer_bool=False,
+                         lottie_url='https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json')
 
-logging_in = False
-registering = False
-with st.sidebar:
-	if st.button("Login"):
-		logging_in = True
-	elif st.button("Register"):
-		registering = True
-		with st.form("register"):
-			username = st.text_input("Username", key="username")
-			email = st.text_input("Email", key="email")
-			password = st.text_input("Password", type="password", key="password")
-			registered = st.form_submit_button("Register", on_click=register)
+LOGGED_IN = __login__obj.build_login_ui()
+
+if LOGGED_IN == True:
+
+    st.header("EncrypedCookieManager:")
+
+    @st.cache_resource(experimental_allow_widgets=True)
+    def get_manager():
+        return stx.CookieManager()
+
+    cookie_manager = get_manager()
+
+    st.subheader("All Cookies:")
+    cookies = cookie_manager.get_all()
+    st.write(cookies)
+
+    cookie_manager.set("users", {})

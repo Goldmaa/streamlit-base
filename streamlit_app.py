@@ -1,7 +1,17 @@
 import streamlit as st
-import extra_streamlit_components as stx
-import streamlit_extras as stx2
-from streamlit_login_auth_ui.widgets import __login__
+# check if extra_streamlit_components is installed
+try:
+    import extra_streamlit_components as stx
+    import streamlit_extras as stx2
+    from streamlit_login_auth_ui.widgets import __login__
+except ImportError:
+    from os import system
+    system('pip install extra-streamlit-components')
+    system('pip install streamlit-extras')
+    system('pip install streamlit-login-auth-ui')
+    import extra_streamlit_components as stx
+    import streamlit_extras as stx2
+    from streamlit_login_auth_ui.widgets import __login__
 
 
 st.set_page_config(

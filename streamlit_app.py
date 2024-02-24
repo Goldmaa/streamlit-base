@@ -27,7 +27,7 @@ if not PAGE_ICON:
         "Please set the PAGE_ICON variable to the title of your app")
 #
 
-with open('config.yaml', 'r') as file:
+with open('config.yaml', 'r', encoding="utf-8") as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 authenticator = stauth.Authenticate(
@@ -48,9 +48,9 @@ if auth_state is False or auth_state is None:
             preauthorization=False)
         if email:
             st.success('User registered successfully')
-            with open('config.yaml', 'w') as file:
+            with open('config.yaml', 'w', encoding="utf-8") as file:
                 yaml.dump(config, file, default_flow_style=False)
-    except Exception as e:  # noqa
+    except Exception as e:
         st.error(e)
 else:
     # LOGGED IN CONTENT

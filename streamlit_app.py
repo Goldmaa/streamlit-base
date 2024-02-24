@@ -1,3 +1,5 @@
+""" Main Streamlit site file """
+
 from yaml.loader import SafeLoader
 import yaml
 
@@ -16,16 +18,16 @@ st.set_page_config(
 #
 
 # Checks for empty variables
-if PAGE_TITLE.isempty():
+if not PAGE_TITLE:
     raise ValueError(
         "Please set the PAGE_TITLE variable to the title of your app")
 
-if PAGE_ICON.isempty():
+if not PAGE_ICON:
     raise ValueError(
         "Please set the PAGE_ICON variable to the title of your app")
 #
 
-with open('config.yaml') as file:
+with open('config.yaml', 'r') as file:
     config = yaml.load(file, Loader=SafeLoader)
 
 authenticator = stauth.Authenticate(
@@ -42,13 +44,13 @@ auth_state = st.session_state["authentication_status"]
 if auth_state is False or auth_state is None:
     st.error('Username/password is incorrect')
     try:
-        email_of_registered_user, username_of_registered_user, name_of_registered_user = authenticator.register_user(
+        email, username, name = authenticator.register_user(
             preauthorization=False)
-        if email_of_registered_user:
+        if email:
             st.success('User registered successfully')
             with open('config.yaml', 'w') as file:
                 yaml.dump(config, file, default_flow_style=False)
-    except Exception as e:
+    except Exception as e:  # noqa
         st.error(e)
 else:
     # LOGGED IN CONTENT

@@ -5,19 +5,19 @@ from streamlit_login_auth_ui.widgets import __login__
 
 # Check run mode:
 if st.experimental_user.get("email") == "test@example.com":
-    mode = "dev"
+    MODE = "dev"
 else:
-    mode = "prod"
+    MODE = "prod"
 
-print("Mode:", mode)
+print("Mode:", MODE)
 
 # Define page title:
-page_title = ""
-if page_title == "":
+PAGE_TITLE = ""
+if PAGE_TITLE == "":
     raise ValueError("Please define a page title in streamlit_app.py.")
 
 st.set_page_config(
-    page_title=page_title, page_icon="🔥", layout="wide", initial_sidebar_state="collapsed"
+    page_title=PAGE_TITLE, page_icon="🔥", layout="wide", initial_sidebar_state="collapsed"
 )
 
 
@@ -25,13 +25,15 @@ st.set_page_config(
 try:
     st.secrets["courier_api_key"]
 except KeyError:
-    raise ValueError("No 'courier_api_key' secret found: define this in .streamlit/secrets.toml")
+    raise ValueError(
+        "No 'courier_api_key' secret found: define this in .streamlit/secrets.toml")
 
 # Check for admin email:
 try:
     st.secrets["admin_email"]
 except KeyError:
-    raise ValueError("No 'admin_email' secret found: define this in .streamlit/secrets.toml")
+    raise ValueError(
+        "No 'admin_email' secret found: define this in .streamlit/secrets.toml")
 
 # Define company name:
 company_name = ""
@@ -49,9 +51,9 @@ LOGGED_IN = __login__obj.build_login_ui()
 
 if LOGGED_IN == True:
 
-    if mode == "dev":
+    if MODE == "dev":
         user_email = st.secrets["admin_email"]
-    elif mode == "prod":
+    elif MODE == "prod":
         user_email = st.experimental_user.get("email")
     else:
         raise ValueError("Unknown mode")

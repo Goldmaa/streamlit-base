@@ -24,7 +24,7 @@ if not PAGE_TITLE:
 
 if not PAGE_ICON:
     raise ValueError(
-        "Please set the PAGE_ICON variable to the title of your app")
+        "Please set the PAGE_ICON variable to the icon of your app")
 #
 
 with open('config.yaml', 'r', encoding="utf-8") as file:

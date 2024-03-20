@@ -13,7 +13,9 @@ Set up by default with an **authentication system** - this is suited for general
 
 ## Dependencies
 
-All requirements are listed in ***requirements.txt***
+### Pip Packages
+
+All pip requirements are listed in *`requirements.txt`*
 
 
 ## Authentication
@@ -24,22 +26,29 @@ Uses streamlit-authenticator library for authentication widgets
 
 ### Credentials
 
-Credentials are stored in ***config.yaml***
+Credentials are stored in *`config.yaml`*
 
 
 ## Config && Secrets
 
 ### Config
 
-Configuration for Streamlit is stored in ***/.streamlit/config.toml***
+Configuration for Streamlit is stored in *`/.streamlit/config.toml`*
 
 ### Secrets
 
-Secrets for Streamlit environment are stored in ***/.streamlit/secrets.toml***
+Secrets for Streamlit environment are stored in *`/.streamlit/secrets.toml`*
 
 
 ## Github Actions
 
 ### Pylint
 
-Default Pylint Github Action is set up in ***/.github/workflows/pylint.yml***
+Default Pylint Github Action is set up in *`/.github/workflows/pylint.yml*`
+
+
+## Licensing
+
+### None.
+
+Unlicensed using **`https://unlicense.org/`** - see *`UNLICENSE`* file

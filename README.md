@@ -44,7 +44,7 @@ Secrets for Streamlit environment are stored in *`/.streamlit/secrets.toml`*
 
 ### Pylint
 
-Default Pylint Github Action is set up in *`/.github/workflows/pylint.yml*`
+Default Pylint Github Action is set up in *`/.github/workflows/pylint.yml`*
 
 
 ## Licensing

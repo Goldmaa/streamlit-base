@@ -49,6 +49,6 @@ Default Pylint Github Action is set up in *`/.github/workflows/pylint.yml`*
 
 ## Licensing
 
-### None.
+### None (ish).
 
 Unlicensed using **`https://unlicense.org/`** - see *`UNLICENSE`* file
